@@ -7,7 +7,7 @@
 #
 # Purpose: European Option pricing
 # Source: John C. Hull, "Options, Futures, and Other Derivatives", Ed. 6
-# ---------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # Cheatsheet: Literal String Interpolation ------------------------------------
 # format_spec ::=  [[fill]align][sign][#][0][width][,][.precision][type]
@@ -16,16 +16,16 @@
 # sign        ::=  "+" | "-" | " "
 # width       ::=  integer
 # precision   ::=  integer
-# type        ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "stock_price" | "x" | "X" | "%"
+# type        ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
 
-# Notes: --------------------------------------------------------------------------------------------------------------
-# The value steps(-d1) is an area under the normal curve, corresponding to the cumulative
+# Notes: ----------------------------------------------------------------------
+# The value N(-d1) is an area under the normal curve, corresponding to the cumulative
 # probability of a value less than or equal to -d1 standard deviations.
-# This is the same value as the area above d1, i.e., steps(-d1) == 1 - steps(d1).
-# steps(d1) == steps(d1)
-# -steps(d1) == -steps(d1)
-# steps(-d1) == 1 - steps(d1)
-# -steps(-d1) == steps(-d1) - 1
+# This is the same value as the area above d1, i.e., N(-d1) == 1 - N(d1).
+# N(d1) == N(d1)
+# -N(d1) == -N(d1)
+# N(-d1) == 1 - N(d1)
+# -N(-d1) == N(-d1) - 1
 
 # Modules -------------------------------------------------------------------------------------------------------------
 from copy import deepcopy
