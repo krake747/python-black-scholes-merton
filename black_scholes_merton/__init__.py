@@ -29,10 +29,11 @@
 
 # Modules -------------------------------------------------------------------------------------------------------------
 from copy import deepcopy
+from textwrap import dedent
 from math import log, sqrt, exp, fabs
+from scipy.stats import norm
 
 import numpy as np
-from scipy.stats import norm
 
 
 # Classes--------------------------------------------------------------------------------------------------------------
@@ -196,16 +197,16 @@ class BSMCallOption(BlackScholesMertonOption):
 
     def summary(self) -> str:
         """Return the summary of a European Call Option."""
-        summary = (
-            f"Summary\n"
-            f"-------------\n"
-            f"value: {self.value()}\n"
-            f"delta: {self.delta()}\n"
-            f"gamma: {self.gamma()}\n"
-            f"theta: {self.theta()}\n"
-            f"rho:   {self.rho()}\n"
-            f"vega:  {self.vega()}"
-        )
+        summary = dedent(f"""
+            Summary
+            -------------
+            value: {self.value()}
+            delta: {self.delta()}
+            gamma: {self.gamma()}
+            theta: {self.theta()}
+            rho:   {self.rho()}
+            vega:  {self.vega()}
+        """).strip("\n")
         return summary
 
 
@@ -255,16 +256,16 @@ class BSMPutOption(BlackScholesMertonOption):
 
     def summary(self) -> str:
         """Return the summary of a European Put Option."""
-        summary = (
-            f"Summary\n"
-            f"-------------\n"
-            f"value: {self.value()}\n"
-            f"delta: {self.delta()}\n"
-            f"gamma: {self.gamma()}\n"
-            f"theta: {self.theta()}\n"
-            f"rho:   {self.rho()}\n"
-            f"vega:  {self.vega()}"
-        )
+        summary = dedent(f"""
+            Summary
+            -------------
+            value: {self.value()}
+            delta: {self.delta()}
+            gamma: {self.gamma()}
+            theta: {self.theta()}
+            rho:   {self.rho()}
+            vega:  {self.vega()}
+        """).strip("\n")
         return summary
 
 
