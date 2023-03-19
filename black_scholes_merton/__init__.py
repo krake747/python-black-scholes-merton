@@ -59,17 +59,17 @@ class BlackScholesMertonOption:
     Methods:
     --------
     value: float
-        return present value of European bsm_option
+        return present value of European Black-Scholes-Merton Option
     delta: float
-        return delta of a European bsm_option
+        return delta of a European Black-Scholes-Merton Option
     gamma: float
-        return gamma of a European bsm_option
+        return gamma of a European Black-Scholes-Merton Option
     theta: float
-        return theta of a European bsm_option
+        return theta of a European Black-Scholes-Merton Option
     rho: float
-        return rho of a European bsm_option
+        return rho of a European Black-Scholes-Merton Option
     vega: float
-        return vega of a European bsm_option
+        return vega of a European Black-Scholes-Merton Option
     """
 
     def __init__(self, stock_price: float, strike: float, time_to_maturity: float, risk_free_rate: float, sigma: float,
@@ -175,11 +175,11 @@ class BSMCallOption(BlackScholesMertonOption):
         return exp(-self.div * self.t) * self.cdf_d1()
 
     def gamma(self) -> float:
-        """Return the gamma of a European Call  Option."""
+        """Return the gamma of a European Call Option."""
         return (exp(-self.div * self.t) * self.pdf_d1()) / (self.s * self.sigma * sqrt(self.t))
 
     def theta(self) -> float:
-        """Return the theta of a European Call  Option."""
+        """Return the theta of a European Call Option."""
         theta = -self.s * self.pdf_d1() * self.sigma * exp(-self.div * self.t) / (
                 (2 * sqrt(self.t)) + self.div * self.s * self.cdf_d1() * exp(-self.div * self.t) -
                 self.rf * self.k * exp(-self.rf * self.t) * self.cdf_d2()
