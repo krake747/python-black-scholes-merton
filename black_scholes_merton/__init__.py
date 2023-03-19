@@ -92,16 +92,6 @@ class BlackScholesMertonOption:
     def __str__(self) -> str:
         return f"BlackScholesMertonOption({', '.join([f'{k}={v}' for k, v in self.__dict__.items()])})"
 
-    @staticmethod
-    def pdf(x: float, mean: float = 0.0, std_dev: float = 1.0) -> float:
-        """Return the value of the probability distribution function. n(x)"""
-        return norm.pdf(x, mean, std_dev)
-
-    @staticmethod
-    def cdf(x: float, mean: float = 0.0, std_dev: float = 1.0) -> float:
-        """Return the value of the cumulative distribution function. steps(x)"""
-        return norm.cdf(x, mean, std_dev)
-
     def d1(self) -> float:
         return (log(self.s / self.k) + (self.rf - self.div + 0.5 * self.sigma ** 2) * self.t) / \
             (self.sigma * sqrt(self.t))
@@ -112,19 +102,19 @@ class BlackScholesMertonOption:
 
     def pdf_d1(self) -> float:
         """Returns n(d1)."""
-        return self.pdf(self.d1())
+        return self._pdf(self.d1())
 
     def pdf_d2(self) -> float:
         """Returns n(d2)."""
-        return self.pdf(self.d2())
+        return self._pdf(self.d2())
 
     def cdf_d1(self) -> float:
         """Returns N(d1)."""
-        return self.cdf(self.d1())
+        return self._cdf(self.d1())
 
     def cdf_d2(self) -> float:
         """Returns N(d2)."""
-        return self.cdf(self.d2())
+        return self._cdf(self.d2())
 
     def value(self) -> float:
         print("Cannot calculate bsm_option value for base class BlackScholesMertonOption.")
@@ -149,6 +139,16 @@ class BlackScholesMertonOption:
     def vega(self) -> float:
         print("Cannot calculate the bsm_option greek vega for base class BlackScholesMertonOption.")
         return 0.0
+
+    @staticmethod
+    def _pdf(x: float, mean: float = 0.0, std_dev: float = 1.0) -> float:
+        """Return the value of the probability distribution function. n(x)"""
+        return norm.pdf(x, mean, std_dev)
+
+    @staticmethod
+    def _cdf(x: float, mean: float = 0.0, std_dev: float = 1.0) -> float:
+        """Return the value of the cumulative distribution function. steps(x)"""
+        return norm.cdf(x, mean, std_dev)
 
 
 # Derived class (child)
