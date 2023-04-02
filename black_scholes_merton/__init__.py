@@ -181,11 +181,9 @@ class BSMCallOption(BlackScholesMertonOption):
 
     def theta(self) -> float:
         """Return the theta of a European Call Option."""
-        theta = -self.s * self.pdf_d1() * self.sigma * exp(-self.div * self.t) / (
-                (2 * sqrt(self.t)) + self.div * self.s * self.cdf_d1() * exp(-self.div * self.t) -
-                self.rf * self.k * exp(-self.rf * self.t) * self.cdf_d2()
-        )
-        return theta
+        return -self.s * self.pdf_d1() * self.sigma * exp(-self.div * self.t) / (2 * sqrt(self.t)) + \
+            self.div * self.s * self.cdf_d1() * exp(-self.div * self.t) - \
+            self.rf * self.k * self.cdf_d1() * exp(-self.rf * self.t)
 
     def rho(self) -> float:
         """Return the rho of a European Call Option."""
@@ -240,11 +238,9 @@ class BSMPutOption(BlackScholesMertonOption):
 
     def theta(self) -> float:
         """Return the theta of a European Put Option."""
-        theta = -self.s * self.pdf_d1() * self.sigma * exp(-self.div * self.t) / (
-                (2 * sqrt(self.t)) - self.div * self.s * (1 - self.cdf_d1()) * exp(-self.div * self.t) +
-                self.rf * self.k * exp(-self.rf * self.t) * (1 - self.cdf_d2())
-        )
-        return theta
+        return -self.s * self.pdf_d1() * self.sigma * exp(-self.div * self.t) / (2 * sqrt(self.t)) - \
+            self.div * self.s * (1 - self.cdf_d1()) * exp(-self.div * self.t) + \
+            self.rf * self.k * exp(-self.rf * self.t) * (1 - self.cdf_d2())
 
     def rho(self) -> float:
         """Return the rho of a European Put Option."""
